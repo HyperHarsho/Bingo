@@ -3,31 +3,20 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Scanner;
 
 public class App {
     public static int bTable[];
     public static int pTable[];
     public static int eff = 0;
-    public static int bingo = 0;
-    public static HashMap<String, Integer> com = new HashMap<>();
+    public static int bbingo = 0;
+    public static int pbingo = 0;
+    public static HashMap<String, Integer> bcom = new HashMap<>();
+    public static HashMap<String, Integer> pcom = new HashMap<>();
     public static HashMap<String, Integer> hir = new HashMap<>();
     public static Random rndm = new Random();
 
     App() {
-        // Completed
-        com.put("d1", 0);
-        com.put("d2", 0);
-        com.put("c0", 0);
-        com.put("c4", 0);
-        com.put("r0", 0);
-        com.put("r4", 0);
-        com.put("r1", 0);
-        com.put("r3", 0);
-        com.put("c1", 0);
-        com.put("c3", 0);
-        com.put("r2", 0);
-        com.put("c2", 0);
-
         // Hierarchy
         hir.put("d1", rndm.nextInt(4));
         hir.put("d2", rndm.nextInt(4));
@@ -65,7 +54,7 @@ public class App {
     }
 
     // Check completed
-    public static void cCon(int table[], boolean real) {
+    public static void cCon(int table[], boolean real, int map) {
         int cc = 0;
         for (int i = 0; i < table.length; i++) {
             cc = 0;
@@ -78,8 +67,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("r0", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("r0", cc);
+                        if (map == 0)
+                            pcom.put("r0", cc);
+                    }
                     // C0:
                     cc = 0;
                     for (int j = 0; j < 21; j += 5) {
@@ -88,8 +81,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("c0", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("c0", cc);
+                        if (map == 0)
+                            pcom.put("c0", cc);
+                    }
                     // D1:
                     cc = 0;
                     for (int j = 0; j < 25; j += 6) {
@@ -98,8 +95,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("d1", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("d1", cc);
+                        if (map == 0)
+                            pcom.put("d1", cc);
+                    }
                     break;
                 case 1:
                     // C1:
@@ -109,8 +110,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("c1", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("c1", cc);
+                        if (map == 0)
+                            pcom.put("c1", cc);
+                    }
                     break;
                 case 2:
                     // C2:
@@ -120,8 +125,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("c2", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("c2", cc);
+                        if (map == 0)
+                            pcom.put("c2", cc);
+                    }
                     break;
                 case 3:
                     // C3:
@@ -131,8 +140,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("c3", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("c3", cc);
+                        if (map == 0)
+                            pcom.put("c3", cc);
+                    }
                     break;
                 case 4:
                     // C4:
@@ -142,8 +155,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("c4", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("c4", cc);
+                        if (map == 0)
+                            pcom.put("c4", cc);
+                    }
                     // D2:
                     cc = 0;
                     for (int j = 4; j < 21; j += 4) {
@@ -152,8 +169,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("d2", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("d2", cc);
+                        if (map == 0)
+                            pcom.put("d2", cc);
+                    }
                     break;
                 case 5:
                     // R1:
@@ -163,8 +184,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("r1", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("r1", cc);
+                        if (map == 0)
+                            pcom.put("r1", cc);
+                    }
                     break;
                 case 10:
                     // R2:
@@ -174,8 +199,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("r2", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("r2", cc);
+                        if (map == 0)
+                            pcom.put("r2", cc);
+                    }
                     break;
                 case 15:
                     // R3:
@@ -185,8 +214,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("r3", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("r3", cc);
+                        if (map == 0)
+                            pcom.put("r3", cc);
+                    }
                     break;
                 case 20:
                     // R4:
@@ -196,8 +229,12 @@ public class App {
                             ++eff;
                         }
                     }
-                    if (real)
-                        com.put("r4", cc);
+                    if (real) {
+                        if (map == 1)
+                            bcom.put("r4", cc);
+                        if (map == 0)
+                            pcom.put("r4", cc);
+                    }
                     break;
             }
         }
@@ -234,12 +271,22 @@ public class App {
         return false;
     }
 
-    // BINGO Counter
-    public static void count(Map<String, Integer> map) {
-        bingo = 0;
-        for (Map.Entry<String, Integer> m : com.entrySet()) {
+    // Bot BINGO Counter
+    public static void bcount() {
+        bbingo = 0;
+        for (Map.Entry<String, Integer> m : bcom.entrySet()) {
             if (m.getValue() == 5) {
-                ++bingo;
+                ++bbingo;
+            }
+        }
+    }
+
+    // Player BINGO Counter
+    public static void pcount() {
+        pbingo = 0;
+        for (Map.Entry<String, Integer> m : pcom.entrySet()) {
+            if (m.getValue() == 5) {
+                ++pbingo;
             }
         }
     }
@@ -249,13 +296,13 @@ public class App {
         int hV = 0;
         Map<String, Integer> equal = new HashMap<>();
         List<String> prio = new ArrayList<>();
-        for (Map.Entry<String, Integer> m : com.entrySet()) {
+        for (Map.Entry<String, Integer> m : bcom.entrySet()) {
             if (m.getValue() > hV && m.getValue() < 5) {
                 hV = m.getValue();
             }
         }
         String sEffL = "";
-        for (Map.Entry<String, Integer> m : com.entrySet()) {
+        for (Map.Entry<String, Integer> m : bcom.entrySet()) {
             if (m.getValue() == hV && m.getValue() < 5) {
                 equal.put(m.getKey(), m.getValue());
             }
@@ -362,7 +409,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -377,7 +424,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -392,7 +439,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -407,7 +454,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -422,7 +469,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -437,7 +484,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -452,7 +499,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -467,7 +514,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -482,7 +529,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -497,7 +544,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -512,7 +559,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -527,7 +574,7 @@ public class App {
                     if (ttable[j] == 42)
                         continue;
                     ttable[j] = 42;
-                    cCon(ttable, false);
+                    cCon(ttable, false, 1);
                     if (eff > maxeff) {
                         maxeff = eff;
                         effL = j;
@@ -536,24 +583,84 @@ public class App {
                 }
                 break;
         }
-        table[effL] = (int) '*';
-        cCon(table, true);
-        bTable = table.clone();
+        System.out.println("Its Bot's turn. The Bot chooses :" + bTable[effL]);
+        for (int i = 0; i < pTable.length; i++) {
+            if (pTable[i] == bTable[effL]) {
+                pTable[i] = (int) '*';
+                break;
+            }
+        }
+        bTable[effL] = (int) '*';
+
+    }
+
+    // Check Bingo
+    public static void check() {
+        cCon(bTable, true, 1);
+        cCon(pTable, true, 0);
+        pcount();
+        bcount();
+        if (pbingo == 5) {
+            System.out.println("BINGO!!!!!");
+            System.out.println("You won");
+            System.exit(0);
+        }
+        if (bbingo == 5) {
+            System.out.println("BINGO!!!!!");
+            System.out.println("Bot won");
+            System.exit(0);
+        }
     }
 
     public static void main(String[] args) throws Exception {
         App ap = new App();
         bTable = rTable().clone();
-        int i = 1;
-        while (i <= 50) {
-            count(com);
-            if (bingo == 5) {
-                System.out.println("BINGO!!!");
-                break;
+        pTable = rTable().clone();
+        Scanner in = new Scanner(System.in);
+        check();
+        System.out.println("========BINGO========");
+        int turn = rndm.nextInt(2);
+        int choice;
+        String input;
+        while (true) {
+            switch (turn) {
+                case 0:
+                    choice = 0;
+                    System.out.println("Your table :");
+                    System.out.println(prTable(pTable));
+                    check();
+                    System.out.print("Its your turn, enter a number :");
+                    input = in.nextLine();
+                    try {
+                        choice = Integer.parseInt(input);
+                        if (!(present(pTable, choice))) {
+                            System.out.println("Enter a number that you can see in the table");
+                            continue;
+                        }
+                        for (int i = 0; i < pTable.length; i++) {
+                            if (pTable[i] == choice) {
+                                pTable[i] = (int) '*';
+                                for (int j = 0; j < bTable.length; j++) {
+                                    if (bTable[j] == choice) {
+                                        bTable[j] = (int) '*';
+                                        break;
+                                    }
+                                }
+                                break;
+                            }
+                        }
+                        System.out.println(prTable(pTable));
+                        turn = 1;
+                    } catch (NumberFormatException e) {
+                        System.out.println("Enter a number that you can see in the table");
+                        continue;
+                    }
+                    break;
+                case 1:
+                    check();
+                    bot(bTable);
+                    turn = 0;
             }
-            bot(bTable);
-            System.out.println(i + ":\n" + prTable(bTable));
-            i++;
         }
     }
 }
