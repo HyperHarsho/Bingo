@@ -1,0 +1,559 @@
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ThreadLocalRandom;
+
+public class App {
+    public static int bTable[];
+    public static int pTable[];
+    public static int eff = 0;
+    public static int bingo = 0;
+    public static HashMap<String, Integer> com = new LinkedHashMap<>();
+    public static Map<String, Integer> hir = new HashMap<>();
+
+    App() {
+        // Completed
+        com.put("d1", 0);
+        com.put("d2", 0);
+        com.put("c0", 0);
+        com.put("c4", 0);
+        com.put("r0", 0);
+        com.put("r4", 0);
+        com.put("r1", 0);
+        com.put("r3", 0);
+        com.put("c1", 0);
+        com.put("c3", 0);
+        com.put("r2", 0);
+        com.put("c2", 0);
+
+        // Hierarchy
+        hir.put("d1", 0);
+        hir.put("d2", 0);
+        hir.put("c0", 1);
+        hir.put("c4", 1);
+        hir.put("r0", 1);
+        hir.put("r4", 1);
+        hir.put("r1", 2);
+        hir.put("r3", 2);
+        hir.put("c1", 2);
+        hir.put("c3", 2);
+        hir.put("r2", 3);
+        hir.put("c2", 3);
+    }
+
+    // Print table
+    public static String prTable(int table[]) {
+        StringBuilder s = new StringBuilder();
+        for (int j = 0; j < table.length; j++) {
+            if (j == 4 || j == 9 || j == 14 || j == 19 || j == 24) {
+                if (table[j] == 42) {
+                    s.append((char) table[j] + "\t\n");
+                } else {
+                    s.append(table[j] + "\t\n");
+                }
+            } else {
+                if (table[j] == 42) {
+                    s.append((char) table[j] + "\t");
+                } else {
+                    s.append(table[j] + "\t");
+                }
+            }
+        }
+        return s.toString();
+    }
+
+    // Check completed
+    public static void cCon(int table[], boolean real) {
+        int cc = 0;
+        for (int i = 0; i < table.length; i++) {
+            cc = 0;
+            switch (i) {
+                case 0:
+                    // R0:
+                    for (int j = 0; j < 5; j++) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("r0", cc);
+                    // C0:
+                    cc = 0;
+                    for (int j = 0; j < 21; j += 5) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("c0", cc);
+                    // D1:
+                    cc = 0;
+                    for (int j = 0; j < 25; j += 6) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("d1", cc);
+                    break;
+                case 1:
+                    // C1:
+                    for (int j = 1; j < 22; j += 5) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("c1", cc);
+                    break;
+                case 2:
+                    // C2:
+                    for (int j = 2; j < 23; j += 5) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("c2", cc);
+                    break;
+                case 3:
+                    // C3:
+                    for (int j = 3; j < 24; j += 5) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("c3", cc);
+                    break;
+                case 4:
+                    // C4:
+                    for (int j = 4; j < 25; j += 5) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("c4", cc);
+                    // D2:
+                    cc = 0;
+                    for (int j = 4; j < 21; j += 4) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("d2", cc);
+                    break;
+                case 5:
+                    // R1:
+                    for (int j = 5; j < 10; j++) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("r1", cc);
+                    break;
+                case 10:
+                    // R2:
+                    for (int j = 10; j < 15; j++) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("r2", cc);
+                    break;
+                case 15:
+                    // R3:
+                    for (int j = 15; j < 20; j++) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("r3", cc);
+                    break;
+                case 20:
+                    // R4:
+                    for (int j = 20; j < 25; j++) {
+                        if (table[j] == 42) {
+                            ++cc;
+                            ++eff;
+                        }
+                    }
+                    if (real)
+                        com.put("r4", cc);
+                    break;
+            }
+        }
+    }
+
+    // Create random table
+    public static int[] rTable() {
+        int table[] = new int[25];
+        int randomNum;
+        for (int j = 0; j < 25; j++) {
+            randomNum = ThreadLocalRandom.current().nextInt(1, 26);
+            if (present(table, randomNum))
+                continue;
+            table[j] = randomNum;
+        }
+        while (present(table, 0)) {
+            for (int j = 0; j < 25; j++) {
+                randomNum = ThreadLocalRandom.current().nextInt(1, 26);
+                if (present(table, randomNum))
+                    continue;
+                table[j] = randomNum;
+            }
+        }
+        return table;
+    }
+
+    // Check if a number is present in the table
+    public static boolean present(int table[], int num) {
+        for (int j = 0; j < table.length; j++) {
+            if (table[j] == num) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // BINGO Counter
+    public static void count(Map<String, Integer> map) {
+        bingo = 0;
+        for(Map.Entry<String, Integer> m:com.entrySet()) {
+            if(m.getValue() == 5) {
+                ++bingo;
+            }
+        }
+    }
+
+    // Bot move
+    public static void bot(int table[]) {
+        int hV = 0;
+        Map<String, Integer> equal = new LinkedHashMap<>();
+        List<String> prio = new ArrayList<>();
+        for (Map.Entry<String, Integer> m : com.entrySet()) {
+            if (m.getValue() > hV && m.getValue() < 5) {
+                hV = m.getValue();
+            }
+        }
+        String sEffL = "";
+        for (Map.Entry<String, Integer> m : com.entrySet()) {
+            if (m.getValue() == hV && m.getValue() < 5) {
+                equal.put(m.getKey(), m.getValue());
+            }
+        }
+        int cPrio = hir.get(equal.keySet().iterator().next());
+        for (Map.Entry<String, Integer> m : hir.entrySet()) {
+            switch (m.getKey()) {
+                case "d1":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("d1") <= cPrio) {
+                            prio.add("d1");
+                            cPrio = hir.get("d1");
+                        }
+                    break;
+                case "d2":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("d2") <= cPrio) {
+                            prio.add("d2");
+                            cPrio = hir.get("d2");
+                        }
+                    break;
+                case "c0":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("c0") <= cPrio) {
+                            prio.add("c0");
+                            cPrio = hir.get("c0");
+                        }
+                    break;
+                case "c1":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("c1") <= cPrio) {
+                            prio.add("c1");
+                            cPrio = hir.get("c1");
+                        }
+                    break;
+                case "c2":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("c2") <= cPrio) {
+                            prio.add("c2");
+                            cPrio = hir.get("c2");
+                        }
+                    break;
+                case "c3":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("c3") <= cPrio) {
+                            prio.add("c3");
+                            cPrio = hir.get("c3");
+                        }
+                    break;
+                case "c4":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("c4") <= cPrio) {
+                            prio.add("c4");
+                            cPrio = hir.get("c4");
+                        }
+                    break;
+                case "r0":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("r0") <= cPrio) {
+                            prio.add("r0");
+                            cPrio = hir.get("r0");
+                        }
+                    break;
+                case "r1":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("r1") <= cPrio) {
+                            prio.add("r1");
+                            cPrio = hir.get("r1");
+                        }
+                    break;
+                case "r2":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("r2") <= cPrio) {
+                            prio.add("r2");
+                            cPrio = hir.get("r2");
+                        }
+                    break;
+                case "r3":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("r3") <= cPrio) {
+                            prio.add("r3");
+                            cPrio = hir.get("r3");
+                        }
+                    break;
+                case "r4":
+                    if (equal.containsKey(m.getKey()))
+                        if (hir.get("r4") <= cPrio) {
+                            prio.add("r4");
+                            cPrio = hir.get("r4");
+                        }
+                    break;
+            }
+        }
+        sEffL = prio.get(ThreadLocalRandom.current().nextInt(0, (prio.size())));
+        int ttable[] = table.clone();
+        int maxeff = 0;
+        int effL = 0;
+        switch (sEffL) {
+            case "d1":
+                maxeff = 0;
+                for (int j = 0; j < 25; j += 6) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "d2":
+                maxeff = 0;
+                for (int j = 4; j < 21; j += 4) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "c0":
+                maxeff = 0;
+                for (int j = 0; j < 21; j += 5) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "c1":
+                maxeff = 0;
+                for (int j = 1; j < 22; j += 5) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "c2":
+                maxeff = 0;
+                for (int j = 2; j < 23; j += 5) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "c3":
+                maxeff = 0;
+                for (int j = 3; j < 24; j += 5) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "c4":
+                maxeff = 0;
+                for (int j = 4; j < 25; j += 5) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "r0":
+                maxeff = 0;
+                for (int j = 0; j < 5; j++) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "r1":
+                maxeff = 0;
+                for (int j = 5; j < 10; j++) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "r2":
+                maxeff = 0;
+                for (int j = 10; j < 15; j++) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "r3":
+                maxeff = 0;
+                for (int j = 15; j < 20; j++) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+            case "r4":
+                maxeff = 0;
+                for (int j = 20; j < 25; j++) {
+                    eff = 0;
+                    if (ttable[j] == 42)
+                        continue;
+                    ttable[j] = 42;
+                    cCon(ttable, false);
+                    if (eff > maxeff) {
+                        maxeff = eff;
+                        effL = j;
+                    }
+                    ttable[j] = table[j];
+                }
+                break;
+        }
+        table[effL] = (int) '*';
+        cCon(table, true);
+        // count(cof);
+        bTable = table.clone();
+    }
+
+    public static void main(String[] args) throws Exception {
+        App ap = new App();
+        bTable = rTable().clone();
+        int i = 1;
+        while (i <= 50) {
+            count(com);
+            if(bingo == 5) {
+                System.out.println("BINGO!!!");
+                break;
+            }
+            bot(bTable);
+            System.out.println(i + ":\n" + prTable(bTable));
+            i++;
+        }
+    }
+}
