@@ -602,7 +602,7 @@ public class App {
         bcount();
         if (pbingo == 5) {
             System.out.println("BINGO!!!!!");
-            System.out.println("You won");
+            System.out.println("You won\n"+prTable(pTable));
             System.exit(0);
         }
         if (bbingo == 5) {
