@@ -1,17 +1,17 @@
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
+import java.util.Random;
 
 public class App {
     public static int bTable[];
     public static int pTable[];
     public static int eff = 0;
     public static int bingo = 0;
-    public static HashMap<String, Integer> com = new LinkedHashMap<>();
-    public static Map<String, Integer> hir = new HashMap<>();
+    public static HashMap<String, Integer> com = new HashMap<>();
+    public static HashMap<String, Integer> hir = new HashMap<>();
+    public static Random rndm = new Random();
 
     App() {
         // Completed
@@ -29,18 +29,18 @@ public class App {
         com.put("c2", 0);
 
         // Hierarchy
-        hir.put("d1", 0);
-        hir.put("d2", 0);
-        hir.put("c0", 1);
-        hir.put("c4", 1);
-        hir.put("r0", 1);
-        hir.put("r4", 1);
-        hir.put("r1", 2);
-        hir.put("r3", 2);
-        hir.put("c1", 2);
-        hir.put("c3", 2);
-        hir.put("r2", 3);
-        hir.put("c2", 3);
+        hir.put("d1", rndm.nextInt(4));
+        hir.put("d2", rndm.nextInt(4));
+        hir.put("c0", rndm.nextInt(4));
+        hir.put("c4", rndm.nextInt(4));
+        hir.put("r0", rndm.nextInt(4));
+        hir.put("r4", rndm.nextInt(4));
+        hir.put("r1", rndm.nextInt(4));
+        hir.put("r3", rndm.nextInt(4));
+        hir.put("c1", rndm.nextInt(4));
+        hir.put("c3", rndm.nextInt(4));
+        hir.put("r2", rndm.nextInt(4));
+        hir.put("c2", rndm.nextInt(4));
     }
 
     // Print table
@@ -208,14 +208,14 @@ public class App {
         int table[] = new int[25];
         int randomNum;
         for (int j = 0; j < 25; j++) {
-            randomNum = ThreadLocalRandom.current().nextInt(1, 26);
+            randomNum = rndm.nextInt(25) + 1;
             if (present(table, randomNum))
                 continue;
             table[j] = randomNum;
         }
         while (present(table, 0)) {
             for (int j = 0; j < 25; j++) {
-                randomNum = ThreadLocalRandom.current().nextInt(1, 26);
+                randomNum = rndm.nextInt(25) + 1;
                 if (present(table, randomNum))
                     continue;
                 table[j] = randomNum;
@@ -237,8 +237,8 @@ public class App {
     // BINGO Counter
     public static void count(Map<String, Integer> map) {
         bingo = 0;
-        for(Map.Entry<String, Integer> m:com.entrySet()) {
-            if(m.getValue() == 5) {
+        for (Map.Entry<String, Integer> m : com.entrySet()) {
+            if (m.getValue() == 5) {
                 ++bingo;
             }
         }
@@ -247,7 +247,7 @@ public class App {
     // Bot move
     public static void bot(int table[]) {
         int hV = 0;
-        Map<String, Integer> equal = new LinkedHashMap<>();
+        Map<String, Integer> equal = new HashMap<>();
         List<String> prio = new ArrayList<>();
         for (Map.Entry<String, Integer> m : com.entrySet()) {
             if (m.getValue() > hV && m.getValue() < 5) {
@@ -260,7 +260,8 @@ public class App {
                 equal.put(m.getKey(), m.getValue());
             }
         }
-        int cPrio = hir.get(equal.keySet().iterator().next());
+        String sL[] = equal.keySet().toArray(new String[equal.size()]);
+        int cPrio = hir.get(sL[rndm.nextInt(sL.length)]);
         for (Map.Entry<String, Integer> m : hir.entrySet()) {
             switch (m.getKey()) {
                 case "d1":
@@ -349,7 +350,7 @@ public class App {
                     break;
             }
         }
-        sEffL = prio.get(ThreadLocalRandom.current().nextInt(0, (prio.size())));
+        sEffL = prio.get(rndm.nextInt(prio.size()));
         int ttable[] = table.clone();
         int maxeff = 0;
         int effL = 0;
@@ -537,7 +538,6 @@ public class App {
         }
         table[effL] = (int) '*';
         cCon(table, true);
-        // count(cof);
         bTable = table.clone();
     }
 
@@ -547,7 +547,7 @@ public class App {
         int i = 1;
         while (i <= 50) {
             count(com);
-            if(bingo == 5) {
+            if (bingo == 5) {
                 System.out.println("BINGO!!!");
                 break;
             }
