@@ -607,7 +607,7 @@ public class App {
         }
         if (bbingo == 5) {
             System.out.println("BINGO!!!!!");
-            System.out.println("Bot won");
+            System.out.println("Bot won\n"+prTable(bTable));
             System.exit(0);
         }
     }
