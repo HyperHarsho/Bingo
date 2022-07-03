@@ -602,12 +602,12 @@ public class App {
         bcount();
         if (pbingo == 5) {
             System.out.println("BINGO!!!!!");
-            System.out.println("You won\n"+prTable(pTable)+"\nBot's Table:"+prTable(bTable));
+            System.out.println("You won\n" + prTable(pTable) + "\nBot's Table:" + prTable(bTable));
             System.exit(0);
         }
         if (bbingo == 5) {
             System.out.println("BINGO!!!!!");
-            System.out.println("Bot won-\n"+prTable(bTable));
+            System.out.println("Bot won-\n" + prTable(bTable));
             System.exit(0);
         }
     }
